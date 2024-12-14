@@ -3,9 +3,9 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub fn chittify(source: &str) -> usize {
-    return getLength(source);
+    return get_length(source);
 }
 
-fn getLength(string: &str) -> usize {
+fn get_length(string: &str) -> usize {
     string.len()
 }
