@@ -3,7 +3,7 @@ use std::char;
 use crate::contants::asm_data;
 use crate::contants::Tokens;
 
-pub fn create_element(name: &str, style: &str, content: String, class: String) -> String {
+pub fn create_element(name: &str, style: &str, content: &String, class: String) -> String {
     format!(
         "<{} style='{}' class='{}'>{}</{}>",
         name, style, class, content, name
@@ -59,6 +59,16 @@ pub fn add_space(i: usize, tokens: &Tokens, parsed: &Vec<Tokens>) -> String {
         }
     }
     content
+}
+
+pub fn get_classes(tokens: &Tokens, content: &str) -> String {
+    let mut classes: Vec<String> = vec![];
+    if is_number(content) {
+        classes.push("constant".to_string());
+    }
+
+    classes.push(tokens.class.clone());
+    classes.join(" ")
 }
 
 fn split_at_indent(string: &str) -> [&str; 2] {

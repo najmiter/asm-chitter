@@ -1,5 +1,6 @@
 extern crate wasm_bindgen;
 use utils::add_space;
+use utils::get_classes;
 use wasm_bindgen::prelude::*;
 
 mod contants;
@@ -27,20 +28,21 @@ pub fn chittify(source: &str) -> String {
             let span = create_element(
                 "span",
                 styles.get(&tokens.class).unwrap_or(&"".to_string()),
-                content,
-                tokens.class.clone(),
+                &content,
+                get_classes(tokens, &content),
             );
             wrapper.push(span);
         }
         let line_content = wrapper.join("\n");
-        let wrapper_div = create_element("div", "display: flex;", line_content, "line".to_string());
+        let wrapper_div =
+            create_element("div", "display: flex;", &line_content, "line".to_string());
         styled_html.push(wrapper_div);
     }
 
     create_element(
         "div",
         "display: grid;",
-        styled_html.join("\n"),
+        &styled_html.join("\n"),
         "main-wrapper".to_string(),
     )
 }
