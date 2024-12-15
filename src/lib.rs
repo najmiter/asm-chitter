@@ -22,6 +22,11 @@ pub fn chittify(source: &str) -> String {
     let mut styled_html = Vec::new();
     let styles = get_styles();
     for parsed in parsed_data {
+        // for token in parsed {
+        //     print!("{:?}\t::", token);
+        //     println!("{:?}", get_classes(&token, &token.content));
+        // }
+        // break;
         let mut wrapper = Vec::new();
         for (i, tokens) in parsed.iter().enumerate() {
             let content = add_space(i, tokens, &parsed);
@@ -47,12 +52,12 @@ pub fn chittify(source: &str) -> String {
     )
 }
 
-#[allow(dead_code)]
-fn main() {
-    let result = chittify(
-        "mov rax, 10
-    add rax, 10",
-    );
+// #[allow(dead_code)]
+// fn main() {
+//     chittify(
+//         "mov rax, '10'
+//     add rax, 10",
+//     );
 
-    println!("{}", result)
-}
+//     // println!("{}", result)
+// }

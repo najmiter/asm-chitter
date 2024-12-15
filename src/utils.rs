@@ -27,14 +27,32 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
     });
 
     let binding = rest.replace(",", " ,").to_owned();
-    let tokens = binding.split(" ");
+    let mut tokens = binding.split(" ");
     let keys = data.keys();
-    for token in tokens {
+    while let Some(token) = tokens.next() {
         let mut map = Tokens {
             name: "plain".to_string(),
             class: "plain".to_string(),
             content: token.to_string(),
         };
+        if token.starts_with('"') || token.starts_with("'") {
+            let started_with = token.chars().next().unwrap();
+            let mut string = String::new();
+            string.push_str(token);
+            while let Some(next) = tokens.next() {
+                string.push(' ');
+                string.push_str(next);
+                if next.ends_with(started_with) {
+                    break;
+                }
+            }
+            map.class = "constant".to_string();
+            map.name = "constant".to_string();
+            map.content = string;
+            array.push(map);
+            break;
+        }
+
         for key in keys.clone().into_iter() {
             let Some(asm_tokens) = data.get(key) else {
                 break;
