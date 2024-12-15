@@ -28,15 +28,21 @@ pub fn chittify(source: &str) -> String {
                 "span",
                 styles.get(&tokens.class).unwrap_or(&"".to_string()),
                 content,
+                tokens.class.clone(),
             );
             wrapper.push(span);
         }
         let line_content = wrapper.join("\n");
-        let wrapper_div = create_element("div", "display: flex;", line_content);
+        let wrapper_div = create_element("div", "display: flex;", line_content, "line".to_string());
         styled_html.push(wrapper_div);
     }
 
-    create_element("div", "display: grid;", styled_html.join("\n"))
+    create_element(
+        "div",
+        "display: grid;",
+        styled_html.join("\n"),
+        "main-wrapper".to_string(),
+    )
 }
 
 #[allow(dead_code)]

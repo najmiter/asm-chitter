@@ -3,8 +3,11 @@ use std::char;
 use crate::contants::asm_data;
 use crate::contants::Tokens;
 
-pub fn create_element(name: &str, style: &str, content: String) -> String {
-    format!("<{} style='{}'>{}</{}>", name, style, content, name)
+pub fn create_element(name: &str, style: &str, content: String, class: String) -> String {
+    format!(
+        "<{} style='{}' class='{}'>{}</{}>",
+        name, style, class, content, name
+    )
 }
 
 pub fn parse_line(line: &str) -> Vec<Tokens> {
@@ -48,6 +51,16 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
     array
 }
 
+pub fn add_space(i: usize, tokens: &Tokens, parsed: &Vec<Tokens>) -> String {
+    let mut content = tokens.content.clone();
+    if let Some(next) = parsed.get(i + 1) {
+        if next.content != "," {
+            content.push_str("&nbsp;");
+        }
+    }
+    content
+}
+
 fn split_at_indent(string: &str) -> [&str; 2] {
     [
         &string[0..string.find(char::is_alphanumeric).unwrap_or(0)],
@@ -63,14 +76,4 @@ fn is_number(s: &str) -> bool {
     } else {
         s.parse::<u32>().is_ok()
     }
-}
-
-pub fn add_space(i: usize, tokens: &Tokens, parsed: &Vec<Tokens>) -> String {
-    let mut content = tokens.content.clone();
-    if let Some(next) = parsed.get(i + 1) {
-        if next.content != "," {
-            content.push_str("&nbsp;");
-        }
-    }
-    content
 }
