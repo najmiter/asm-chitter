@@ -40,12 +40,12 @@ pub fn chittify(source: &str) -> String {
         }
         let line_content = wrapper.join("\n");
         let wrapper_div =
-            create_element("div", "display: flex;", &line_content, &"line".to_string());
+            create_element("code", "display: flex;", &line_content, &"line".to_string());
         styled_html.push(wrapper_div);
     }
 
     create_element(
-        "div",
+        "pre",
         "display: grid;",
         &styled_html.join("\n"),
         &"main-wrapper".to_string(),
