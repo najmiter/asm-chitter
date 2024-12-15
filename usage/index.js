@@ -1,4 +1,4 @@
-import init, { chittify } from '../pkg/chitter.js';
+import init, { chittify } from './pkg/chitter.js';
 
 await init();
 
