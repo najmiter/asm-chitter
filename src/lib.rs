@@ -1,5 +1,5 @@
-extern crate wasm_bindgen;
-use wasm_bindgen::prelude::*;
+// extern crate wasm_bindgen;
+// use wasm_bindgen::prelude::*;
 
 mod contants;
 mod utils;
@@ -8,7 +8,7 @@ use contants::Tokens;
 use utils::create_element;
 use utils::parse_line;
 
-#[wasm_bindgen]
+// #[wasm_bindgen]
 pub fn chittify(source: &str) -> String {
     let lines = source.split("\n");
     let mut parsed_data: Vec<Vec<Tokens>> = Vec::new();
@@ -36,18 +36,12 @@ pub fn chittify(source: &str) -> String {
     }
 
     create_element("div", "display: grid;", styled_html.join("\n"))
-    // let data = asm_data();
-    // if let Some(operators) = data.get("operators") {
-    //     return operators.join(", ");
-    // }
-
-    // "No operators found.".to_string()
 }
 
-// #[allow(dead_code)]
-// fn main() {
-//     chittify(
-//         "mov rax, 10
-//     add rax, 10",
-//     );
-// }
+#[allow(dead_code)]
+fn main() {
+    // chittify(
+    //     "mov rax, 10
+    // add rax, 10",
+    // );
+}

@@ -53,3 +53,13 @@ fn split_at_indent(string: &str) -> [&str; 2] {
         string.trim_start_matches(char::is_whitespace),
     ]
 }
+
+fn is_number(s: &str) -> bool {
+    if s.starts_with("0x") || s.starts_with("0X") {
+        u32::from_str_radix(&s[2..], 16).is_ok()
+    } else if s.starts_with("0b") || s.starts_with("0B") {
+        u32::from_str_radix(&s[2..], 2).is_ok()
+    } else {
+        s.parse::<u32>().is_ok()
+    }
+}
