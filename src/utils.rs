@@ -16,7 +16,11 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
     array.push(Tokens {
         name: "space".to_string(),
         class: "space".to_string(),
-        content: spaces.to_string(),
+        content: spaces
+            .chars()
+            .map(|_| "&nbsp;")
+            .collect::<Vec<_>>()
+            .join(""),
     });
 
     let tokens = rest.split(" ");
