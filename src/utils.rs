@@ -35,13 +35,14 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
             class: "plain".to_string(),
             content: token.to_string(),
         };
+        // strings
         if token.starts_with('"') || token.starts_with("'") {
             let started_with = token.chars().next().unwrap();
             let mut string = String::new();
             string.push_str(token);
             while let Some(next) = tokens.next() {
                 string.push(' ');
-                string.push_str(next);
+                string.push_str(if next.is_empty() { " " } else { next });
                 if next.ends_with(started_with) {
                     break;
                 }

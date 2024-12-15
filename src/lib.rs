@@ -55,7 +55,7 @@ pub fn chittify(source: &str) -> String {
 // #[allow(dead_code)]
 // fn main() {
 //     chittify(
-//         "mov rax, '10'
+//         "mov rax, '10    is a strn'
 //     add rax, 10",
 //     );
 
