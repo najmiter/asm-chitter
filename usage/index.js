@@ -1,4 +1,9 @@
 import init, { chittify } from '../pkg/chitter.js';
 
 await init();
-console.log(chittify('; some code'));
+
+const code = document.querySelector('#code');
+code.innerHTML = chittify(`mov rax, 10
+      add rax, 10`);
+
+//wasm-pack build --target web

@@ -3,9 +3,9 @@ use std::char;
 use crate::contants::asm_data;
 use crate::contants::Tokens;
 
-// pub fn create_element(name: &str, class: &str, content: &str) -> String {
-//     format!("<{} class='{}'>{}</{}>", name, class, content, name)
-// }
+pub fn create_element(name: &str, style: &str, content: String) -> String {
+    format!("<{} style='{}'>{}</{}>", name, style, content, name)
+}
 
 pub fn parse_line(line: &str) -> Vec<Tokens> {
     let data = asm_data();
@@ -31,20 +31,12 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
             let Some(asm_tokens) = data.get(key) else {
                 break;
             };
-            if let Some(index) = asm_tokens.iter().position(|&x| x == token.to_uppercase()) {
+            if asm_tokens.iter().any(|&x| x == token.to_uppercase()) {
                 map.class = key.to_string();
                 map.name = key.to_string();
-                // let map = Tokens {
-                //     name: key.to_string(),
-                //     class: key.to_string(),
-                //     content: token.to_string(),
-                // };
-                // array.push(map);
-                println!("Found element at index: {}", index);
                 break;
-            };
+            }
         }
-        // println!("BOOM");
         array.push(map);
     }
 
