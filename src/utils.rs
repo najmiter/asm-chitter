@@ -23,7 +23,8 @@ pub fn parse_line(line: &str) -> Vec<Tokens> {
             .join(""),
     });
 
-    let tokens = rest.split(" ");
+    let binding = rest.replace(",", " ,").to_owned();
+    let tokens = binding.split(" ");
     let keys = data.keys();
     for token in tokens {
         let mut map = Tokens {
@@ -62,4 +63,14 @@ fn is_number(s: &str) -> bool {
     } else {
         s.parse::<u32>().is_ok()
     }
+}
+
+pub fn add_space(i: usize, tokens: &Tokens, parsed: &Vec<Tokens>) -> String {
+    let mut content = tokens.content.clone();
+    if let Some(next) = parsed.get(i + 1) {
+        if next.content != "," {
+            content.push_str("&nbsp;");
+        }
+    }
+    content
 }

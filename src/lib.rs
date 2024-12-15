@@ -1,5 +1,6 @@
-// extern crate wasm_bindgen;
-// use wasm_bindgen::prelude::*;
+extern crate wasm_bindgen;
+use utils::add_space;
+use wasm_bindgen::prelude::*;
 
 mod contants;
 mod utils;
@@ -8,12 +9,11 @@ use contants::Tokens;
 use utils::create_element;
 use utils::parse_line;
 
-// #[wasm_bindgen]
+#[wasm_bindgen]
 pub fn chittify(source: &str) -> String {
     let lines = source.split("\n");
     let mut parsed_data: Vec<Vec<Tokens>> = Vec::new();
     for line in lines {
-        // println!("{}", line);
         let parsed = parse_line(line);
         parsed_data.push(parsed);
     }
@@ -22,11 +22,12 @@ pub fn chittify(source: &str) -> String {
     let styles = get_styles();
     for parsed in parsed_data {
         let mut wrapper = Vec::new();
-        for tokens in parsed {
+        for (i, tokens) in parsed.iter().enumerate() {
+            let content = add_space(i, tokens, &parsed);
             let span = create_element(
                 "span",
                 styles.get(&tokens.class).unwrap_or(&"".to_string()),
-                tokens.content,
+                content,
             );
             wrapper.push(span);
         }
@@ -40,8 +41,10 @@ pub fn chittify(source: &str) -> String {
 
 #[allow(dead_code)]
 fn main() {
-    // chittify(
-    //     "mov rax, 10
-    // add rax, 10",
-    // );
+    let result = chittify(
+        "mov rax, 10
+    add rax, 10",
+    );
+
+    println!("{}", result)
 }
