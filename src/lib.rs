@@ -29,13 +29,13 @@ pub fn chittify(source: &str) -> String {
                 "span",
                 styles.get(&tokens.class).unwrap_or(&"".to_string()),
                 &content,
-                get_classes(tokens, &content),
+                &get_classes(tokens, &content),
             );
             wrapper.push(span);
         }
         let line_content = wrapper.join("\n");
         let wrapper_div =
-            create_element("div", "display: flex;", &line_content, "line".to_string());
+            create_element("div", "display: flex;", &line_content, &"line".to_string());
         styled_html.push(wrapper_div);
     }
 
@@ -43,7 +43,7 @@ pub fn chittify(source: &str) -> String {
         "div",
         "display: grid;",
         &styled_html.join("\n"),
-        "main-wrapper".to_string(),
+        &"main-wrapper".to_string(),
     )
 }
 

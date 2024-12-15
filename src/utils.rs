@@ -3,7 +3,7 @@ use std::char;
 use crate::contants::asm_data;
 use crate::contants::Tokens;
 
-pub fn create_element(name: &str, style: &str, content: &String, class: String) -> String {
+pub fn create_element(name: &str, style: &str, content: &String, class: &String) -> String {
     format!(
         "<{} style='{}' class='{}'>{}</{}>",
         name, style, class, content, name
