@@ -4,5 +4,7 @@ await init();
 
 const code = document.querySelector('#code');
 const highlighted = chittify(`mov rax, '10 is a       string'
-add rax, 10`);
+add rax, 10
+label:
+ret`);
 code.innerHTML = highlighted;
