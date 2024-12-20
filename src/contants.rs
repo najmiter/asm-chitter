@@ -8,35 +8,35 @@ pub struct Tokens {
     pub content: String,
 }
 
-pub fn get_styles() -> HashMap<String, String> {
-    let mut styles = HashMap::new();
+// pub fn get_styles() -> HashMap<String, String> {
+//     let mut styles = HashMap::new();
 
-    styles.insert("plain".to_string(), "color: #c8d1d9;".to_string());
-    styles.insert("jumps".to_string(), "color: #c79af1;".to_string());
-    styles.insert("constant".to_string(), "color: #79c0ff;".to_string());
-    styles.insert("citicals".to_string(), "color: #f47067;".to_string());
-    styles.insert("operators".to_string(), "color: #a492f7;".to_string());
-    styles.insert("datatypes".to_string(), "color: #8edb8c;".to_string());
-    styles.insert("arithmetics".to_string(), "color: yellowgreen;".to_string());
-    styles.insert(
-        "comment".to_string(),
-        "color: #6b6b6b; font-style: italic;".to_string(),
-    );
-    styles.insert(
-        "registers".to_string(),
-        "color: #fdad54; font-style: italic;".to_string(),
-    );
-    styles.insert(
-        "instructions".to_string(),
-        "color: #ec8e2b; font-weight: bold;".to_string(),
-    );
-    styles.insert(
-        "function-label".to_string(),
-        "color: #d2a8ff; font-weight: bold;".to_string(),
-    );
+//     styles.insert("plain".to_string(), "color: #c8d1d9;".to_string());
+//     styles.insert("jumps".to_string(), "color: #c79af1;".to_string());
+//     styles.insert("constant".to_string(), "color: #79c0ff;".to_string());
+//     styles.insert("citicals".to_string(), "color: #f47067;".to_string());
+//     styles.insert("operators".to_string(), "color: #a492f7;".to_string());
+//     styles.insert("datatypes".to_string(), "color: #8edb8c;".to_string());
+//     styles.insert("arithmetics".to_string(), "color: yellowgreen;".to_string());
+//     styles.insert(
+//         "comment".to_string(),
+//         "color: #6b6b6b; font-style: italic;".to_string(),
+//     );
+//     styles.insert(
+//         "registers".to_string(),
+//         "color: #fdad54; font-style: italic;".to_string(),
+//     );
+//     styles.insert(
+//         "instructions".to_string(),
+//         "color: #ec8e2b; font-weight: bold;".to_string(),
+//     );
+//     styles.insert(
+//         "function-label".to_string(),
+//         "color: #d2a8ff; font-weight: bold;".to_string(),
+//     );
 
-    styles
-}
+//     styles
+// }
 
 pub fn asm_data() -> HashMap<&'static str, Vec<&'static str>> {
     let mut map = HashMap::new();

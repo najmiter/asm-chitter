@@ -5,7 +5,6 @@ use wasm_bindgen::prelude::*;
 
 mod contants;
 mod utils;
-use contants::get_styles;
 use contants::Tokens;
 use utils::create_element;
 use utils::parse_line;
@@ -20,7 +19,6 @@ pub fn chittify(source: &str) -> String {
     }
 
     let mut styled_html = Vec::new();
-    let styles = get_styles();
     for parsed in parsed_data {
         // for token in parsed {
         //     print!("{:?}\t::", token);
@@ -32,7 +30,7 @@ pub fn chittify(source: &str) -> String {
             let content = add_space(i, tokens, &parsed);
             let span = create_element(
                 "span",
-                styles.get(&tokens.class).unwrap_or(&"".to_string()),
+                &"".to_string(),
                 &content,
                 &get_classes(tokens, &content),
             );
