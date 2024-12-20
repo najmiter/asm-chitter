@@ -82,11 +82,11 @@ pub fn add_space(i: usize, tokens: &Tokens, parsed: &Vec<Tokens>) -> String {
 
 pub fn get_classes(tokens: &Tokens, content: &str) -> String {
     let mut classes: Vec<String> = vec![];
+    classes.push(tokens.class.clone());
     if is_number(content) {
         classes.push("constant".to_string());
     }
 
-    classes.push(tokens.class.clone());
     classes.join(" ")
 }
 
